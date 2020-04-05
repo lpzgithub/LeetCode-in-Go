@@ -1,5 +1,9 @@
 package problem0001
 
+import (
+	"sort"
+)
+
 func twoSum(nums []int, target int) []int {
 	// index 负责保存map[整数]整数的序列号
 	index := make(map[int]int, len(nums))
@@ -18,5 +22,26 @@ func twoSum(nums []int, target int) []int {
 		index[b] = i
 	}
 
+	return nil
+}
+
+func twoSumSort(nums []int, target int) []int {
+	sort.Slice(nums, func(i int, j int) bool {
+		if nums[i] < nums[j] {
+			return true
+		}
+		return false
+	})
+
+	lenght := len(nums)
+	for i, j := 0, lenght-1; i < j; {
+		if nums[i]+nums[j] < target {
+			i++
+		} else if nums[i]+nums[j] > target {
+			j--
+		} else {
+			return []int{nums[i], nums[j]}
+		}
+	}
 	return nil
 }

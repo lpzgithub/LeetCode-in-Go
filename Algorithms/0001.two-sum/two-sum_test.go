@@ -49,3 +49,32 @@ func Test_OK(t *testing.T) {
 		ast.Equal(a.one, twoSum(p.one, p.two), "输入:%v", p)
 	}
 }
+
+func Test_Sort_OK(t *testing.T) {
+	ast := assert.New(t)
+
+	qs := []question{
+		question{
+			p: para{
+				one: []int{3, 2, 4},
+				two: 6,
+			},
+			a: ans{
+				one: []int{2, 4},
+			},
+		},
+		question{
+			p: para{
+				one: []int{3, 2, 4},
+				two: 8,
+			},
+			a: ans{
+				one: nil,
+			},
+		},
+	}
+	for _, q := range qs {
+		a, p := q.a, q.p
+		ast.Equal(a.one, twoSumSort(p.one, p.two), "输入:%v", p)
+	}
+}
